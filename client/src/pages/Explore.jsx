@@ -15,55 +15,64 @@ const Explore = () => {
             </span>
           </div>
         </Link>
-        <div className="relative flex items-center justify-center h-60 rounded-3xl overflow-hidden">
-          {/* Blurred background */}
-          <div className="absolute inset-0 bg-gradient-to-r from-pink-600 via-red-400 to-orange-400 blur-md hover:blur-xl"></div>
+        <Link to={"/explore/music"}>
+          <div className="relative flex items-center justify-center h-60 rounded-3xl overflow-hidden">
+            {/* Blurred background */}
+            <div className="absolute inset-0 bg-gradient-to-r from-pink-600 via-red-400 to-orange-400 blur-md hover:blur-xl"></div>
 
-          {/* Text content */}
-          <span className="relative z-10 font-mono text-slate-300 text-5xl">
-            Music
-          </span>
-        </div>
+            {/* Text content */}
+            <span className="relative z-10 font-mono text-slate-300 text-5xl">
+              Music
+            </span>
+          </div>
+        </Link>
 
-        <div className="relative flex items-center justify-center h-60 rounded-3xl overflow-hidden">
-          {/* Blurred background */}
-          <div className="absolute inset-0 bg-gradient-to-r from-lime-500 via-amber-600 to-yellow-500 blur-md hover:blur-xl"></div>
+        <Link to={"/explore/gaming"}>
+          <div className="relative flex items-center justify-center h-60 rounded-3xl overflow-hidden">
+            {/* Blurred background */}
+            <div className="absolute inset-0 bg-gradient-to-r from-lime-500 via-amber-600 to-yellow-500 blur-md hover:blur-xl"></div>
 
-          {/* Text content */}
-          <span className="relative z-10 font-mono text-slate-300 text-5xl">
-            Gaming
-          </span>
-        </div>
+            {/* Text content */}
+            <span className="relative z-10 font-mono text-slate-300 text-5xl">
+              Gaming
+            </span>
+          </div>
+        </Link>
 
-        <div className="relative flex items-center justify-center h-60 rounded-3xl overflow-hidden">
-          {/* Blurred background */}
-          <div className="absolute inset-0 bg-gradient-to-r from-fuchsia-500 via-pink-500 to-red-400 blur-md hover:blur-xl"></div>
+        <Link to={"/explore/learning"}>
+          <div className="relative flex items-center justify-center h-60 rounded-3xl overflow-hidden">
+            {/* Blurred background */}
+            <div className="absolute inset-0 bg-gradient-to-r from-fuchsia-500 via-pink-500 to-red-400 blur-md hover:blur-xl"></div>
 
-          {/* Text content */}
-          <span className="relative z-10 font-mono text-slate-300 text-5xl">
-            Learning
-          </span>
-        </div>
+            {/* Text content */}
+            <span className="relative z-10 font-mono text-slate-300 text-5xl">
+              Learning
+            </span>
+          </div>
+        </Link>
+        <Link to={"/explore/art"}>
+          <div className="relative flex items-center justify-center h-60 rounded-3xl overflow-hidden">
+            {/* Blurred background */}
+            <div className="absolute inset-0 bg-gradient-to-r from-violet-800 via-blue-600 to-teal-600 blur-md hover:blur-xl"></div>
 
-        <div className="relative flex items-center justify-center h-60 rounded-3xl overflow-hidden">
-          {/* Blurred background */}
-          <div className="absolute inset-0 bg-gradient-to-r from-violet-800 via-blue-600 to-teal-600 blur-md hover:blur-xl"></div>
+            {/* Text content */}
+            <span className="relative z-10 font-mono text-slate-300 text-5xl">
+              Art
+            </span>
+          </div>
+        </Link>
 
-          {/* Text content */}
-          <span className="relative z-10 font-mono text-slate-300 text-5xl">
-            Art
-          </span>
-        </div>
+        <Link to={"/explore/fashion"}>
+          <div className="relative flex items-center justify-center h-60 rounded-3xl overflow-hidden">
+            {/* Blurred background */}
+            <div className="absolute inset-0 bg-gradient-to-r from-emerald-700 via-teal-800 to-lime-800 blur-md hover:blur-xl"></div>
 
-        <div className="relative flex items-center justify-center h-60 rounded-3xl overflow-hidden">
-          {/* Blurred background */}
-          <div className="absolute inset-0 bg-gradient-to-r from-emerald-700 via-teal-800 to-lime-800 blur-md hover:blur-xl"></div>
-
-          {/* Text content */}
-          <span className="relative z-10 font-mono text-slate-300 text-5xl">
-            Fashion
-          </span>
-        </div>
+            {/* Text content */}
+            <span className="relative z-10 font-mono text-slate-300 text-5xl">
+              Fashion
+            </span>
+          </div>
+        </Link>
       </div>
     </>
   );

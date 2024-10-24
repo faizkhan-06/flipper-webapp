@@ -102,3 +102,22 @@ export const dislike = async (req, res, next) => {
     next(err);
   }
 };
+
+export const getSubscribedUsers = async (req, res, next) => {
+  try {
+    // Find the user by ID and get the subscribedUsers array (list of IDs)
+    const user = await User.findById(req.params.id);
+
+    if (!user) return next(createError(404, "User not found!"));
+
+    // Fetch full details of each subscribed user using their IDs
+    const subscribedUsers = await User.find({
+      _id: { $in: user.subscribedUsers },
+    });
+
+    // Return the full list of subscribed users
+    res.status(200).json(subscribedUsers);
+  } catch (err) {
+    next(err);
+  }
+};

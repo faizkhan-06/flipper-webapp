@@ -4,7 +4,9 @@ import {
   addView,
   deleteVideo,
   getByTags,
+  getUserVideos,
   getVideo,
+  getVideosByCategory,
   random,
   search,
   sub,
@@ -24,4 +26,11 @@ router.get("/random", random);
 router.get("/sub", verifyToken, sub);
 router.get("/tags", getByTags);
 router.get("/search", search);
+
+// Add this to your video.js route file
+router.get("/user/:userId", getUserVideos);
+
+// Category-based routes
+router.get("/category/:category", getVideosByCategory);
+
 export default router;

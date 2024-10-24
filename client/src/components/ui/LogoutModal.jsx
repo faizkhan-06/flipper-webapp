@@ -1,15 +1,36 @@
 import React from "react";
 import { FaTimes } from "react-icons/fa";
 import { FiLogOut } from "react-icons/fi";
+import { useEffect } from "react";
 
 const LogoutModal = ({ show, onClose, onConfirm }) => {
+  useEffect(() => {
+    if (show) {
+      // Add no-scroll class to body when modal is shown
+      document.body.classList.add("no-scroll");
+    } else {
+      // Remove no-scroll class from body when modal is hidden
+      document.body.classList.remove("no-scroll");
+    }
+
+    // Clean up the class when the component unmounts
+    return () => {
+      document.body.classList.remove("no-scroll");
+    };
+  }, [show]);
   if (!show) {
     return null;
   }
 
   return (
-    <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 z-50">
-      <div className="bg-gray-900 p-6 rounded-lg shadow-lg w-80 relative">
+    <div
+      className=" w-full h-screen  fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 z-50"
+      onClick={onClose}
+    >
+      <div
+        className="bg-gray-900 p-6 rounded-lg shadow-lg w-80 relative"
+        onClick={(e) => e.stopPropagation()}
+      >
         <button
           onClick={onClose}
           className="absolute top-2 right-2 text-gray-400 hover:text-white"

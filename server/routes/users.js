@@ -2,6 +2,7 @@ import express from "express";
 import {
   deleteUser,
   dislike,
+  getSubscribedUsers,
   getUser,
   like,
   subscribe,
@@ -31,4 +32,8 @@ router.put("/like/:id", verifyToken, like);
 
 //dislike a vide
 router.put("/dislike/:id", verifyToken, dislike);
+
+//get subscribed
+router.get("/subscribed/:id", verifyToken, getSubscribedUsers);
+
 export default router;

@@ -8,5 +8,14 @@ export default {
       },
     },
   },
-  plugins: [],
+  plugins: [
+    function ({ addUtilities }) {
+      addUtilities({
+        ".no-scroll": {
+          overflow: "hidden",
+        },
+      });
+    },
+    require("tailwind-scrollbar-hide"),
+  ],
 };

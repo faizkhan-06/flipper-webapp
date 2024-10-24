@@ -11,11 +11,15 @@ export const signup = async (req, res, next) => {
     const salt = await bcrypt.genSalt(10);
     const hash = await bcrypt.hash(body.password, salt);
     const newUser = new User({ ...body, password: hash });
-    await newUser.save();
-    // res.status(200).send("user has been created ")
-    res
-      .status(201)
-      .json({ success: true, message: "User created successfully" });
+    // await newUser.save();
+    // // res.status(200).send("user has been created ")
+    const savedUser = await newUser.save();
+
+    // Convert the saved user to a plain object and remove the password field
+    const userWithoutPassword = savedUser.toObject();
+    delete userWithoutPassword.password;
+
+    res.status(201).json(userWithoutPassword);
   } catch (err) {
     // Log the error for debugging purposes
     console.error(err);

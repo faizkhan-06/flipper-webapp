@@ -103,14 +103,96 @@ export const getByTags = async (req, res, next) => {
     next(err);
   }
 };
-export const search = async (req, res, next) => {
+// export const search = async (req, res, next) => {
+//   const query = req.query.q;
+//   try {
+//     const videos = await Video.find({
+//       title: { $regex: query, $options: "i" },
+//     }).limit(40);
+//     res.status(200).json(videos);
+//   } catch (err) {
+//     next(err);
+//   }
+// };
+
+// export const search = async (req, res) => {
+//   const query = req.query.q;
+//   try {
+//     // Step 1: Fetch videos that match the search query
+//     const videos = await Video.find({
+//       title: { $regex: query, $options: "i" },
+//     });
+
+//     // Step 2: Map over videos and fetch user details for each one
+//     const videosWithUserData = await Promise.all(
+//       videos.map(async (video) => {
+//         const user = await User.findById(video.userId).select("name image");
+//         return {
+//           ...video._doc, // Spread video data
+//           user: user, // Add user data
+//         };
+//       })
+//     );
+
+//     res.status(200).json(videosWithUserData);
+//   } catch (error) {
+//     res.status(500).json({ message: "Error fetching videos", error });
+//   }
+// };
+export const search = async (req, res) => {
   const query = req.query.q;
   try {
-    const videos = await Video.find({
+    // Step 1: Fetch videos that match the search query by title
+    const videosByTitle = await Video.find({
       title: { $regex: query, $options: "i" },
-    }).limit(40);
+    });
+
+    // Step 2: Fetch users that match the search query by username
+    const users = await User.find({
+      name: { $regex: query, $options: "i" },
+    }).select("_id name image");
+
+    // Step 3: Fetch videos uploaded by matching users
+    const videosByUser = await Video.find({
+      userId: { $in: users.map((user) => user._id) },
+    });
+
+    // Step 4: Combine the two sets of videos
+    const combinedVideos = [...videosByTitle, ...videosByUser];
+
+    // Step 5: Map over combined videos and fetch user details for each one
+    const videosWithUserData = await Promise.all(
+      combinedVideos.map(async (video) => {
+        const user = await User.findById(video.userId).select("name image");
+        return {
+          ...video._doc, // Spread video data
+          user: user, // Add user data
+        };
+      })
+    );
+
+    res.status(200).json(videosWithUserData);
+  } catch (error) {
+    res.status(500).json({ message: "Error fetching videos", error });
+  }
+};
+
+// Add this to your video.js controller file
+export const getUserVideos = async (req, res, next) => {
+  try {
+    const videos = await Video.find({ userId: req.params.userId });
     res.status(200).json(videos);
   } catch (err) {
     next(err);
+  }
+};
+
+export const getVideosByCategory = async (req, res) => {
+  const category = req.params.category;
+  try {
+    const videos = await Video.find({ category: category });
+    res.status(200).json(videos);
+  } catch (err) {
+    res.status(500).json({ message: "Error fetching category videos", err });
   }
 };

@@ -23,7 +23,7 @@ const Signin = () => {
   }, [currentUser, navigate]);
 
   const validatePassword = (password) => {
-    return password.length >= 8; // Ensure password is at least 8 characters long
+    return password.length >= 0; // Ensure password is at least 8 characters long
   };
 
   const handleSignIn = async (e) => {
